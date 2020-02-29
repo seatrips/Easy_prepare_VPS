@@ -23,6 +23,7 @@ wget https://raw.githubusercontent.com/seatrips/Easy_prepare_VPS/master/prepare.
 - update
 - upgrade
 - dist-upgrade
+- install NTP
 - install fail2ban
 - install htop or glances
 - install/set UFW 
