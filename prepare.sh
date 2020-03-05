@@ -44,6 +44,38 @@ echo -e $TEXT_RESET
 clear
 
 echo -e $TEXT_YELLOW
+PS3='Do You Want to fix locales: '
+options=("yes" "None")
+echo -e $TEXT_RESET
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+            echo -e $TEXT_YELLOW
+            echo "fixing locales"
+            locale-gen en_US.UTF-8
+            export LANGUAGE=en_US.UTF-8
+            export LANG=en_US.UTF-8
+            export LC_ALL=en_US.UTF-8
+            locale-gen en_US.UTF-8
+            dpkg-reconfigure locales
+            sleep 3
+            echo -e $TEXT_RESET
+            echo -e $GREEN
+            echo "fixed locales"
+            sleep 2
+            break
+            ;;
+        "None")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+clear
+
+echo -e $TEXT_YELLOW
 echo 'Now we first update ubuntu....'
 sleep 3
 sudo apt-get update -y > /dev/null
