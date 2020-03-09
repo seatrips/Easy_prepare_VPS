@@ -32,7 +32,7 @@ do
     case $opt in
         "yes")
         echo -e $GREEN
-        echo 'Adding 2GB Swap if needed'
+        echo 'Adding 2GB Swap'
         sleep 3
         wget https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -O swap > /dev/null 2>&1
         sh swap 2G > /dev/null 2>&1
