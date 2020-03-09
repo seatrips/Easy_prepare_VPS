@@ -23,23 +23,72 @@ echo -e $TEXT_RESET
 
 clear
 
-echo -e $GREEN
-echo 'Adding 2GB Swap if needed'
-sleep 3
-wget https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -O swap > /dev/null 2>&1
-sh swap 2G > /dev/null 2>&1
+echo -e $TEXT_YELLOW
+PS3='Do You Want to Add Swap?: '
+options=("yes" "No")
 echo -e $TEXT_RESET
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+        echo -e $GREEN
+        echo 'Adding 2GB Swap if needed'
+        sleep 3
+        wget https://raw.githubusercontent.com/Cretezy/Swap/master/swap.sh -O swap > /dev/null 2>&1
+        sh swap 2G > /dev/null 2>&1
+        echo -e $TEXT_RESET
+            sleep 2
+            break
+            ;;
+        "No")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
 
 clear
 
 echo -e $TEXT_YELLOW
-echo 'Check the Swap we made or was already made'
+echo 'Check the Swap'
 echo -e $TEXT_RESET
 sleep 3
 echo -e $GREEN
 yes | free -m
 sleep 4
 echo -e $TEXT_RESET
+
+clear
+
+echo -e $TEXT_YELLOW
+PS3='Do You Want to fix locales: '
+options=("yes" "No")
+echo -e $TEXT_RESET
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+            echo -e $TEXT_YELLOW
+            echo "fixing locales"
+            locale-gen en_US.UTF-8
+            export LANGUAGE=en_US.UTF-8
+            export LANG=en_US.UTF-8
+            export LC_ALL=en_US.UTF-8
+            locale-gen en_US.UTF-8
+            dpkg-reconfigure locales
+            sleep 3
+            echo -e $TEXT_RESET
+            echo -e $GREEN
+            echo "fixed locales"
+            sleep 2
+            break
+            ;;
+        "No")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
 
 clear
 
