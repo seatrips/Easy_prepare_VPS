@@ -20,6 +20,7 @@ wget https://raw.githubusercontent.com/seatrips/Easy_prepare_VPS/master/prepare.
 
 ### What happens:
 - add 2G SWAP ( change script for more or less )
+- fix locales if you want
 - update
 - upgrade
 - dist-upgrade
