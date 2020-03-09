@@ -24,7 +24,7 @@ echo -e $TEXT_RESET
 clear
 
 echo -e $TEXT_YELLOW
-PS3='Do You Want to Add Swap?: '
+PS3='Do You Want to Add 2GB Swap ? : '
 options=("yes" "No")
 echo -e $TEXT_RESET
 select opt in "${options[@]}"
