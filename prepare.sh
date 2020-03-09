@@ -45,7 +45,7 @@ clear
 
 echo -e $TEXT_YELLOW
 PS3='Do You Want to fix locales: '
-options=("yes" "None")
+options=("yes" "No")
 echo -e $TEXT_RESET
 select opt in "${options[@]}"
 do
@@ -66,7 +66,7 @@ do
             sleep 2
             break
             ;;
-        "None")
+        "No")
             break
             ;;
         *) echo "invalid option $REPLY";;
