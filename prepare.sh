@@ -306,7 +306,7 @@ if [ $(id -u) -eq 0 ]; then
                 sed -re 's/^(\#)(PermitEmptyPasswords)([[:space:]]+)(.*)/\2\3\4/' -i.`date -I` /etc/ssh/sshd_config
                 sed -re 's/^(\#?)(PermitEmptyPasswords)([[:space:]]+)yes/\2\3no/' -i.`date -I` /etc/ssh/sshd_config
                 systemctl reload sshd > /dev/null 2>&1
-                echo '%sudo ALL=NOPASSWD: ALL' | sudo EDITOR='tee -a' visudo > /dev/null 2>&1
+                echo '%sudo ALL=(ALL) NOPASSWD:ALL' | sudo EDITOR='tee -a' visudo > /dev/null 2>&1
 [ $? -eq 0 ] && echo "User has been added to system as sudo !!! " || echo "Failed to add a user!"
                 sleep 4
         fi
