@@ -191,6 +191,13 @@ echo -e $TEXT_RESET
 
 clear
 
+sudo apt-get install -y software-properties-common > /dev/null 2>&1
+sudo bash -c "LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php" > /dev/null 2>&1
+sudo apt-get update > /dev/null 2>&1
+sudo apt-get install -y libsodium-dev > /dev/null 2>&1
+
+clear
+
 echo -e $TEXT_YELLOW
 echo 'Now we will Install NTP'
 sleep 3
