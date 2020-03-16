@@ -199,33 +199,67 @@ sudo apt-get install -y libsodium-dev > /dev/null 2>&1
 clear
 
 echo -e $TEXT_YELLOW
-echo 'Now we will Install NTP'
-sleep 3
-sudo timedatectl set-ntp no
-yes | sudo apt-get remove ntp > /dev/null
-yes | sudo apt-get install ntp > /dev/null
+PS3='Do You Want to install NTP ? : '
+options=("yes" "No")
 echo -e $TEXT_RESET
-echo -e $GREEN
-echo 'Installed NTP'
-sleep 3
-ntpq -p
-sleep 3
-echo 'NTP Tested'
-sleep 3
-echo -e $TEXT_RESET
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+            echo -e $TEXT_YELLOW
+            echo 'Now we will Install NTP'
+            sleep 3
+            sudo timedatectl set-ntp no
+            yes | sudo apt-get remove ntp > /dev/null
+            yes | sudo apt-get install ntp > /dev/null
+            echo -e $TEXT_RESET
+            echo -e $GREEN
+            echo 'Installed NTP'
+            sleep 3
+            ntpq -p
+            sleep 3
+            echo 'NTP Tested'
+            sleep 3
+            echo -e $TEXT_RESET
+            sleep 2
+            break
+            ;;
+        "No")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
 clear
 
 echo -e $TEXT_YELLOW
-echo 'Now we will Install Fail2Ban...'
-sleep 3
-yes | sudo apt-get install fail2ban > /dev/null
-yes | sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local > /dev/null
-yes | sudo service fail2ban restart > /dev/null
+PS3='Do You Want to install Fail2Ban ? : '
+options=("yes" "No")
 echo -e $TEXT_RESET
-echo -e $GREEN
-echo 'Installed and Restarted Fail2Ban...'
-sleep 3
-echo -e $TEXT_RESET
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+            echo -e $TEXT_YELLOW
+            echo 'Now we will Install Fail2Ban...'
+            sleep 3
+            yes | sudo apt-get install fail2ban > /dev/null
+            yes | sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local > /dev/null
+            yes | sudo service fail2ban restart > /dev/null
+            echo -e $TEXT_RESET
+            echo -e $GREEN
+            echo 'Installed and Restarted Fail2Ban...'
+            sleep 3
+            echo -e $TEXT_RESET
+            break
+            ;;
+        "No")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
 
 clear
 
