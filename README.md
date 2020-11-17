@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/seatrips/Easy_prepare_VPS/master/prepare.
 - set custom ports
 - possibility to make User with sudo rights
 - copy ssh key to new User
-- set passpword authentigation no
+- set passpword authentication no
 - set empty password no
 
 @seatrips
