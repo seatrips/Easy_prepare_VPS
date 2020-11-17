@@ -223,6 +223,18 @@ echo -e $TEXT_RESET
 clear
 
 echo -e $TEXT_YELLOW
+echo 'Now we will Install Git...'
+sleep 3
+yes | sudo apt-get install git -y > /dev/null
+echo -e $TEXT_RESET
+echo -e $GREEN
+echo 'Installed and Restarted Fail2Ban...'
+sleep 3
+echo -e $TEXT_RESET
+
+clear
+
+echo -e $TEXT_YELLOW
 echo 'Now we install unattended-upgrades'
 sleep 3
 sudo apt-get install unattended-upgrades -y > /dev/null
