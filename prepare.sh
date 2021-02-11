@@ -105,6 +105,12 @@ echo -e $TEXT_RESET
 clear
 
 echo -e $TEXT_YELLOW
+apt-get clean && apt-get -y update && apt-get install -y locales && locale-gen en_US.UTF-8
+echo -e $TEXT_RESET
+
+clear
+
+echo -e $TEXT_YELLOW
 echo 'Now we upgrade ubuntu....'
 sleep 3
 sudo apt-get upgrade -y
@@ -124,59 +130,6 @@ echo -e $TEXT_RESET
 echo -e $GREEN
 echo 'dist-upgrade finished...'
 sleep 2
-echo -e $TEXT_RESET
-
-clear
-
-echo -e $TEXT_YELLOW
-echo 'now we prepare the firewall....'
-sleep 3
-apt-get install ufw -y > /dev/null
-yes | sudo ufw default deny incoming > /dev/null 2>&1
-echo 'UFW - Deny incoming...'
-yes | sudo ufw default allow outgoing > /dev/null 2>&1
-echo 'UFW - Allow outgoing...'
-sleep 3
-sudo ufw allow ssh
-echo -e $TEXT_RESET
-echo -e $GREEN
-echo 'Port 22 allowed...'
-sleep 3
-echo -e $TEXT_RESET
-
-clear
-
-echo -e $TEXT_YELLOW
-PS3='Do you want to Allow another port? Choose 1 or 2: '
-options=("YES" "NO")
-echo -e $TEXT_RESET
-select opt in "${options[@]}"
-do
-    case $opt in
-        "YES")
-        echo -e $TEXT_YELLOW
-        read -p 'Which other port would you like to Allow: ' portvar
-        sudo ufw allow $portvar/tcp > /dev/null
-        echo 'Port Allowed...'
-        sleep 2
-        echo -e $TEXT_RESET
-            ;;
-        "NO")
-            break
-            ;;
-        *) echo "invalid option $REPLY";;
-    esac
-done
-
-clear
-
-echo -e $TEXT_YELLOW
-echo 'now we Enable The firewall....'
-yes | sudo ufw enable > /dev/null
-echo -e $TEXT_RESET
-echo -e $GREEN
-echo 'UFW Enabled...'
-sleep 3
 echo -e $TEXT_RESET
 
 clear
